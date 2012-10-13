@@ -14,10 +14,38 @@
       <script src="js/vendor/jquery.spritely.js"></script>
       <script src="js/vendor/pulsar.js"></script>
       <script src="js/main.js"></script>
+	  
+	  <style>
+	  .main {position:relative; height: 800px; width: 600px; border: 1px solid black; background: #336699;}
+	  .snake {position:absolute;background:url() no-repeat; height: 60px; width: 60px;}
+	  </style>
+	  
+	  <script>
+			$(document).ready(function(){
+
+			});
+
+			var bright=false;
+
+			$(function(){setInterval(function(){if(bright){
+
+			$("#sky1, #cloud").css({"z-index":-1});if($.browser.msie)
+
+			$("#sky, #base").css({"z-index":0});else
+			$("#sky, #base").css({opacity:0,"z-index":0}).animate({opacity:1},4000);}
+			else{
+			$("#sky, #base").css({"z-index":-1});if($.browser.msie)
+			$("#sky1, #cloud").css({"z-index":0});else
+
+			$("#sky1, #cloud").css({opacity:0,"z-index":0}).animate({opacity:1},4000);}
+			bright=!bright;},8000);});
+
+
+	  </script>
    </head>
    <body>
       <div id="main">
-         <img src="/img/snake1.jpg" alt="snake1">
+         <img src="/img/snake.jpg" class="snake">
       </div>
    </body>
 </html>
