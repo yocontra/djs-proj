@@ -41,9 +41,14 @@ room.on('coin', function(img){
   addCoin();
 });
 
-room.on('join', function(img){
-  world.players[img] = randLoc();
-  room.emit('join', img, world[img]);
+room.on('join', function(uname){
+  if (uname && ! world.players[uname]) {
+    world.players[uname] = randLoc();
+    room.emit('join', uname, world[img]);
+  } else {
+    room.emit('badname');
+  }
+  
 });
 
 room.on('move', function(img, loc){

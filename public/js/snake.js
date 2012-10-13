@@ -10,13 +10,14 @@ var myVars = {
 };
 
 moveUp = function(snake) {
-    
+    room.emit('move', window.mySnake, snake.position());
     pos = parseInt(snake.css('top'), 10) - myVars.snake.height;
     if (pos < 0) pos = 0;
     snake.css('top', pos);
 };
 
 moveDown = function(snake) {
+    room.emit('move', window.mySnake, snake.position());
     pos = parseInt(snake.css('top'), 10) + parseInt(myVars.snake.height, 10);
     if(pos > (myVars.snake.height * (myVars.arena.height-1))) {
         pos = myVars.snake.height * (myVars.arena.height-1);
@@ -25,12 +26,14 @@ moveDown = function(snake) {
 };
 
 moveLeft = function(snake) {
+    room.emit('move', window.mySnake, snake.position());
     pos = parseInt(snake.css('left'), 10) - myVars.snake.width;
     if (pos < 0) pos = 0;
     snake.css('left', pos);
 };
 
 moveRight = function(snake) {
+    room.emit('move', window.mySnake, snake.position());
     pos = parseInt(snake.css('left'), 10) + parseInt(myVars.snake.width, 10);
     if(pos > myVars.snake.height * (myVars.arena.width-1)) {
         pos = myVars.snake.height * (myVars.arena.width-1);
@@ -45,8 +48,9 @@ moveRight = function(snake) {
     
 $(function() { //on dom ready
     $(document).keydown(function(e) {
-        var snake = $('.snake').first();
+        var snake = window.snakeObj;
         var pos;
+        console.log('press', snake);
                 
         switch (e.which) {
             case 38: //up

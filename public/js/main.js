@@ -6,9 +6,14 @@ window.mySnake = prompt('Enter your name');
 //Add code to get image url
 room.emit('join', mySnake);
 
+room.on('badname', function() {
+    alert('username is in use, reload and try again');
+})
+
 room.on('join', function(img, x, y){
   //Add snake of ID img and set pos
   var snake_div = $("<div id=\"" + img + "\" class=\"snake\"></div>");
+  window.snakeObj = snake_div;
   snake_div.css("top", x + "px");
   snake_div.css("left", y + "px");
   $("#arena").append(snake_div);
