@@ -10,6 +10,7 @@ var myVars = {
 };
 
 moveUp = function(snake) {
+    
     pos = parseInt(snake.css('top'), 10) - myVars.snake.height;
     if (pos < 0) pos = 0;
     snake.css('top', pos);
