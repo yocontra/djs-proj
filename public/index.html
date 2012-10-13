@@ -10,9 +10,16 @@
       <![endif]-->
       <script src="https://raw.github.com/kriskowal/es5-shim/master/es5-shim.min.js"></script>
       <script src="js/vendor/jquery.js"></script>
-      <script src="js/site.js"></script>
       <script src="js/vendor/pulsar.js"></script>
       <script src="js/main.js"></script>
+      <script src="js/snake.js"></script>
+      
+	  
+	  <style>
+	  .main-dominic {position:relative; height: 800px; width: 600px; border: 1px solid black; background: #336699;}
+	  .snake-dominic {position:absolute;background:url() no-repeat; height: 60px; width: 60px;}
+	  </style>
+	
       <link rel="stylesheet" type="text/css" href="/css/site.css"></link>
    </head>
    <body>
@@ -25,7 +32,7 @@
          <div id="back" class="stage"></div>
          <div id="front" class="stage"></div>
          <div id="sand" class="stage"></div> 
-         <div class="snake"></div>
+         <img src="/img/snake.jpg" class="snake-dominic">
       </div>
    </body>
 </html>
