@@ -13,8 +13,10 @@ var pulse = Pulsar.createServer({server:httpServer});
 var room = pulse.channel('main');
 
 room.on('join', function(img){
-  world[img] = [0,0];
-  room.emit('join', img);
+  var x = 0;
+  var y = 0;
+  world[img] = [x,y];
+  room.emit('join', img, x, y);
 });
 
 room.on('move', function(img, x, y){
