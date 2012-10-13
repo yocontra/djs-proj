@@ -15,4 +15,15 @@ var room = pulse.channel('main');
 room.on('join', function(img){
   room.emit('join', img);
 });
+
+room.on('move', function(img, x, y){
+  world[img] = [x,y];
+  room.emit('move', img, x, y);
+});
+
+room.on('leave', function(img){
+  delete world[img];
+  room.emit('leave', img);
+});
+
 console.log("Server running on 8080");

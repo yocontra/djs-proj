@@ -5,5 +5,13 @@ var room = pulse.channel('main');
 room.emit('join', 'my image url');
 
 room.on('join', function(img){
-  //Add snake
+  //Add snake of ID img
+});
+
+room.on('move', function(img, x, y){
+  //Move other persons snake of ID img
+});
+
+room.on('leave', function(img){
+  //Delete snake of ID img
 });
