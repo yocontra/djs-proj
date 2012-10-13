@@ -44,7 +44,7 @@ room.on('coin', function(img){
 room.on('join', function(uname){
   if (uname && ! world.players[uname]) {
     world.players[uname] = randLoc();
-    room.emit('join', uname, world[img]);
+    room.emit('join', uname, world[uname]);
   } else {
     room.emit('badname');
   }
