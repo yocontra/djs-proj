@@ -1,0 +1,21 @@
+{
+   "name":"djs-proj",
+   "version":"0.0.1",
+   
+   "dependencies":{
+      "coffee-script":"*",
+      "pulsar":"*",
+      "vein":"*",
+      "async":"*",
+      "express":"*"
+   },
+   "engines":{
+      "node":">= 0.4.0"
+   },
+   "licenses":[
+      {
+         "type":"MIT",
+         "url":"http://github.com/wearefractal/hackery/raw/master/LICENSE"
+      }
+   ]
+}
