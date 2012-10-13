@@ -51,8 +51,12 @@ room.on('join', function(uname){
   
 });
 
-room.on('move', function(img, loc){
-  world.players[img] = loc;
+room.on('move', function(snake, pos){
+  pos = {
+    x: pos.left,
+    y: pos.top
+  }
+  world.players[snake] = loc;
   room.emit('move', img, loc);
 });
 

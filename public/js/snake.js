@@ -10,35 +10,35 @@ var myVars = {
 };
 
 moveUp = function(snake) {
-    room.emit('move', window.mySnake, snake.position());
     pos = parseInt(snake.css('top'), 10) - myVars.snake.height;
     if (pos < 0) pos = 0;
     snake.css('top', pos);
+    room.emit('move', window.mySnake, snake.position());
 };
 
 moveDown = function(snake) {
-    room.emit('move', window.mySnake, snake.position());
     pos = parseInt(snake.css('top'), 10) + parseInt(myVars.snake.height, 10);
     if(pos > (myVars.snake.height * (myVars.arena.height-1))) {
         pos = myVars.snake.height * (myVars.arena.height-1);
     }
     snake.css('top', pos);
+    room.emit('move', window.mySnake, snake.position());
 };
 
 moveLeft = function(snake) {
-    room.emit('move', window.mySnake, snake.position());
     pos = parseInt(snake.css('left'), 10) - myVars.snake.width;
     if (pos < 0) pos = 0;
     snake.css('left', pos);
+    room.emit('move', window.mySnake, snake.position());
 };
 
 moveRight = function(snake) {
-    room.emit('move', window.mySnake, snake.position());
     pos = parseInt(snake.css('left'), 10) + parseInt(myVars.snake.width, 10);
     if(pos > myVars.snake.height * (myVars.arena.width-1)) {
         pos = myVars.snake.height * (myVars.arena.width-1);
     }
     snake.css('left', pos);
+    room.emit('move', window.mySnake, snake.position());
 };
 
 // var pulse = Pulsar.createClient();
