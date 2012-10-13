@@ -11,43 +11,48 @@ var tiles_wide = 16;
 var tiles_high = 12;
 
 function randLoc() {
-	return [Math.floor(Math.random() * tiles_wide), Math.floor(Math.random() * tiles_high)];
+	return {
+    x: Math.floor(Math.random() * tiles_wide),
+    y: Math.floor(Math.random() * tiles_high)
+  };
 }
 
-var world = {};
+var world = {
+  players: {},
+  scores: {},
+  coin: {}
+};
 var pulse = Pulsar.createServer({server:httpServer});
 var room = pulse.channel('main');
-var coin_counts = {};
 
 function addCoin() {
-  world['coin'] = randLoc();
-  room.emit('coin', world['coin']);
+  world.coin = randLoc();
+  room.emit('coin', world.coin);
 }
 addCoin();
 
 room.on('coin', function(img){
-  if (!coin_counts[img]) {
-	coin_counts[img] = 1;
+  if (!world.scores[img]) {
+    world.scores[img] = 1;
   }
   else {
-	coin_counts[img]++;
+    world.scores[img]++;
   }
   addCoin();
 });
 
 room.on('join', function(img){
-  var loc = randLoc();
-  world[img] = [loc[0], loc[1]];
-  room.emit('join', img, loc[0], loc[1]);
+  world.players[img] = randLoc();
+  room.emit('join', img, world[img]);
 });
 
-room.on('move', function(img, x, y){
-  world[img] = [x,y];
-  room.emit('move', img, x, y);
+room.on('move', function(img, loc){
+  world.players[img] = loc;
+  room.emit('move', img, loc);
 });
 
 room.on('leave', function(img){
-  delete world[img];
+  delete world.players[img];
   room.emit('leave', img);
 });
 
