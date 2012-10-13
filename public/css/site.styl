@@ -17,16 +17,19 @@ body
     padding: 0
 
 #main
-    .snake
-        width: swidth
-        height: sheight
-        overflow: hidden
-        background-image: url('/img/snake.png')
-        background-position: swidth sheight
-        position: relative
-        top: sheight*10
-        left: swidth
-        z-index: 9001
+
+    #arena
+        padding-top: 280px
+        .snake
+            width: swidth
+            height: sheight
+            overflow: hidden
+            background-image: url('/img/snake.png')
+            background-position: swidth sheight
+            position: relative
+            top: sheight
+            left: swidth
+            z-index: 9001
 
 #sky   
     background: url(http://www.scribbletribe.com/im/sky.png) 0 0 repeat-x;

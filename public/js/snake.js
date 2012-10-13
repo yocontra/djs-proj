@@ -4,8 +4,8 @@ var myVars = {
         height: 60
     },
     arena: {
-        width: 16,
-        height: 12
+        width: 20,
+        height: 8
     }
 };
 
