@@ -7,7 +7,11 @@
       "pulsar":"*",
       "vein":"*",
       "async":"*",
-      "express":"*"
+      "express":"*",
+      "stylus":"*"
+   },
+   "scripts":{
+     "build":"stylus ./public/css"
    },
    "engines":{
       "node":">= 0.4.0"
