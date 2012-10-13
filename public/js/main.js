@@ -3,23 +3,34 @@ var room = pulse.channel('main');
 
 window.mySnake = prompt('Enter your name');
 
-//Add code to get image url
-room.emit('join', mySnake);
-
-room.on('join', function(img, x, y){
-  //Add snake of ID img and set pos
+var addSnake = function(img, pos){
+  console.log(img, pos);
   var snake_div = $("<div id=\"" + img + "\" class=\"snake\"></div>");
-  snake_div.css("top", x + "px");
-  snake_div.css("left", y + "px");
+  snake_div.css("top", pos.x + "px");
+  snake_div.css("left", pos.y + "px");
   $("#arena").append(snake_div);
+};
+
+//Add code to get image url
+room.emit('newjoin', mySnake);
+
+room.on('sync', function(world){
+  console.log(world.players);
+  var ref = world.players;
+  for (var k in ref) {
+    addSnake(k, ref[k]);
+  }
+
 });
 
-room.on('move', function(img, x, y){
+room.on('newsnake', addSnake);
+
+room.on('move', function(img, pos){
   //Move other persons snake of ID img
   var existing_snake = $("#" + img);
   if (existing_snake.length) {
-	existing_snake.css("top", x + "px");
-	existing_snake.css("left", y + "px");
+	existing_snake.css("top", pos.x + "px");
+	existing_snake.css("left", pos.y + "px");
   }
 });
 

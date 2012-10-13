@@ -7,8 +7,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 var httpServer = app.listen(8080);
 
-var tiles_wide = 16;
-var tiles_high = 12;
+var tiles_wide = 160;
+var tiles_high = 120;
 
 function randLoc() {
 	return {
@@ -18,42 +18,34 @@ function randLoc() {
 }
 
 var world = {
-  players: {},
-  scores: {},
-  coin: {}
+  players: {}
 };
 var pulse = Pulsar.createServer({server:httpServer});
 var room = pulse.channel('main');
 
-function addCoin() {
-  world.coin = randLoc();
-  room.emit('coin', world.coin);
-}
-addCoin();
 
-room.on('coin', function(img){
-  if (!world.scores[img]) {
-    world.scores[img] = 1;
-  }
-  else {
-    world.scores[img]++;
-  }
-  addCoin();
+room.on('join', function(socket){
+  socket.write({
+    type: 'emit',
+    channel: 'main',
+    event: 'sync',
+    args: [world]
+  });
+
 });
 
-room.on('join', function(img){
+room.on('newjoin', function(img){
   world.players[img] = randLoc();
-  room.emit('join', img, world[img]);
+  room.emit('newsnake', img, world.players[img]);
 });
 
 room.on('move', function(img, loc){
   world.players[img] = loc;
-  room.emit('move', img, loc);
 });
 
 room.on('leave', function(img){
   delete world.players[img];
-  room.emit('leave', img);
+  //room.emit('leave', img);
 });
 
 console.log("Server running on 8080");
