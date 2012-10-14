@@ -7,8 +7,8 @@ window.mySnake = prompt('Enter your name');
 var addSnake = function(img, pos){
   console.log(img, pos);
   var snake_div = $("<div id=\"" + img + "\" class=\"snake\"></div>");
-  snake_div.css("top", pos.x + "px");
-  snake_div.css("left", pos.y + "px");
+  snake_div.css("top", pos.y + "px");
+  snake_div.css("left", pos.x + "px");
   $("#arena").append(snake_div);
 };
 
@@ -29,8 +29,8 @@ room.on('move', function(img, pos){
   //Move other persons snake of ID img
   var existing_snake = $("#" + img);
   if (existing_snake.length) {
-	 existing_snake.css("top", pos.x + "px");
-	 existing_snake.css("left", pos.y + "px");
+	 existing_snake.css("top", pos.y + "px");
+	 existing_snake.css("left", pos.x + "px");
   }
 });
 

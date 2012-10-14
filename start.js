@@ -40,7 +40,7 @@ room.on('newjoin', function(img){
 });
 
 room.on('move', function(snake, pos){
-  world.players[snake] = loc;
+  world.players[snake] = pos;
 });
 
 room.on('leave', function(img){
