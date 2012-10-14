@@ -39,8 +39,8 @@ room.on('newjoin', function(img){
   room.emit('newsnake', img, world.players[img]);
 });
 
-room.on('move', function(img, loc){
-  world.players[img] = loc;
+room.on('move', function(snake, pos){
+  world.players[snake] = loc;
 });
 
 room.on('leave', function(img){

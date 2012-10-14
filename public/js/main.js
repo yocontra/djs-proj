@@ -3,6 +3,7 @@ var room = pulse.channel('main');
 
 window.mySnake = prompt('Enter your name');
 
+
 var addSnake = function(img, pos){
   console.log(img, pos);
   var snake_div = $("<div id=\"" + img + "\" class=\"snake\"></div>");
@@ -15,7 +16,6 @@ var addSnake = function(img, pos){
 room.emit('newjoin', mySnake);
 
 room.on('sync', function(world){
-  console.log(world.players);
   var ref = world.players;
   for (var k in ref) {
     addSnake(k, ref[k]);
@@ -29,8 +29,8 @@ room.on('move', function(img, pos){
   //Move other persons snake of ID img
   var existing_snake = $("#" + img);
   if (existing_snake.length) {
-	existing_snake.css("top", pos.x + "px");
-	existing_snake.css("left", pos.y + "px");
+	 existing_snake.css("top", pos.x + "px");
+	 existing_snake.css("left", pos.y + "px");
   }
 });
 

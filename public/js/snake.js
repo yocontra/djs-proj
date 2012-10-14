@@ -10,10 +10,10 @@ var myVars = {
 };
 
 moveUp = function(snake) {
-    
     pos = parseInt(snake.css('top'), 10) - myVars.snake.height;
     if (pos < 0) pos = 0;
     snake.css('top', pos);
+    room.emit('move', window.mySnake, { x: snake.position().left, y: snake.position().top});
 };
 
 moveDown = function(snake) {
@@ -22,12 +22,14 @@ moveDown = function(snake) {
         pos = myVars.snake.height * (myVars.arena.height-1);
     }
     snake.css('top', pos);
+    room.emit('move', window.mySnake, { x: snake.position().left, y: snake.position().top});
 };
 
 moveLeft = function(snake) {
     pos = parseInt(snake.css('left'), 10) - myVars.snake.width;
     if (pos < 0) pos = 0;
     snake.css('left', pos);
+    room.emit('move', window.mySnake, { x: snake.position().left, y: snake.position().top});
 };
 
 moveRight = function(snake) {
@@ -36,6 +38,7 @@ moveRight = function(snake) {
         pos = myVars.snake.height * (myVars.arena.width-1);
     }
     snake.css('left', pos);
+    room.emit('move', window.mySnake, { x: snake.position().left, y: snake.position().top} );
 };
 
 // var pulse = Pulsar.createClient();
@@ -45,8 +48,9 @@ moveRight = function(snake) {
     
 $(function() { //on dom ready
     $(document).keydown(function(e) {
-        var snake = $('.snake').first();
+        var snake = $("#"+window.mySnake);
         var pos;
+        console.log('press', snake);
                 
         switch (e.which) {
             case 38: //up
