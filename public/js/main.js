@@ -6,7 +6,7 @@ window.mySnake = prompt('Enter your name');
 
 var addSnake = function(img, pos){
   console.log(img, pos);
-  var snake_div = $("<div id=\"" + img + "\" class=\"snake\"></div>");
+  var snake_div = $("<div id=\"" + img + "\" class=\"snake\" title=\"" + img + "\">" + img + "</div>");
   snake_div.css("top", pos.y + "px");
   snake_div.css("left", pos.x + "px");
   $("#arena").append(snake_div);
